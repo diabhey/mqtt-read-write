@@ -1,0 +1,23 @@
+name: mqtt-read-write build
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      env: 
+        DOCKER_ID: ${{ SECRETS.DOCKER_REG_ID }}
+        DOCKER_KEY: ${{ SECRETS.DOCKER_REG_KEY }}
+      run: |
+        echo "$DOCKER_KEY" | docker login docker.io --username $DOCKER_ID  --password-stdin
+    - name: mqtt-read-write build
+      run: |
+        docker build . -t abigillu/mqtt-read-write:latest             
+    - name: mqtt-read-write push 
+      run : |
+        docker push abigillu/mqtt-read-write:latest
