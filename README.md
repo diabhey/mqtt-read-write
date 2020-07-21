@@ -87,7 +87,8 @@ docker container ls
       - ```bash
          cd /app/data/ && ls -l
         ```
-
+*NOTE*: The solution was tested with a max file size of 1GB. Since github has a restriction of file size limit to 100MB, I have uploaded a smaller sized file.
+The viewer can test the solution with a large text file.
 ## Author
 
 * Abhimanyu Selvan is the author of this application
